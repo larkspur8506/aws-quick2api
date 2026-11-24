@@ -682,7 +682,10 @@ export class UpstreamKeyPool {
         };
         const onAbort = () => finish();
         const timer = setTimeout(finish, stepWaitMs);
-        timer.unref?.();
+        // Do NOT unref: this timer is the only thing that guarantees the bounded soft-wait
+        // settles. Unref'ing it lets the event loop drain while the caller still awaits the
+        // promise (surfaces as "Promise resolution is still pending but the event loop has
+        // already resolved" — node 22: release workflow tests 23/24/25 fail, no image built).
         if (hasWaited) {
           this.slotWaiters.unshift(entry);
         } else {
