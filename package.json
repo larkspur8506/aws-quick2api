@@ -1,6 +1,6 @@
 {
   "name": "aws-quick2api",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": true,
   "description": "Headless OpenAI & Anthropic compatible API gateway for AWS Quick (Amazon Quick) with OAuth PKCE, Web Cookie, and Local Outpost support.",
   "license": "MIT",
